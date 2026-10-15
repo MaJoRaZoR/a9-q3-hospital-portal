@@ -1,0 +1,7 @@
+FROM nginx:stable-alpine
+ARG RELEASE=local
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY index.html /usr/share/nginx/html/index.html
+RUN printf '%s' "$RELEASE" > /usr/share/nginx/html/release.txt
+EXPOSE 80
+HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD wget -q -O /dev/null http://127.0.0.1/healthz || exit 1

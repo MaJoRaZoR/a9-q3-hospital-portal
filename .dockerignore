@@ -1,0 +1,6 @@
+.git
+versions
+scripts
+Jenkinsfile
+*.yaml
+README.md
